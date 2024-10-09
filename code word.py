@@ -2,8 +2,8 @@ import Art
 print(Art.logo_caesar_cipher)
 import os
 
-def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
+# def system():
+#     os.system('cls' if os.name == 'nt' else 'system')
 
 
 
@@ -31,19 +31,24 @@ def caesar(message, shift,direction):
             new_index = (message_index + shift) % len(alphabet)  
             code_store += alphabet[new_index]
 
-    print(f"Your {user} message is",code_store)
+    print(f"Your {user} message is :",code_store)
 
 
 ask_to_continue="yes"
 while ask_to_continue=="yes":
     user=input("Type encode to 'encrypt,Type decode to 'decrypt'\n").lower()
-    text=str(input("Enter the your message:\n"))
+    if user not in ["decode", "encode"]:
+        os.system("cls")
+        print("You enter wrong command please try again !!!")
+        continue
+    text=str(input("Enter the your message (in lower case):\n"))
     shift_amount=int(input("Enter the shift number:\n"))
     
     caesar(direction=user,message=text,shift=shift_amount)
     ask_to_continue=input("Type 'yes' if you want to go again. Otherwise type 'no': ")
+    
     if ask_to_continue=="no":
         print("Goodbye")
     else:
-        clear()
+        os.system("cls")
 
